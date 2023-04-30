@@ -20,7 +20,7 @@ export function CreateTodo() {
 
         console.log({ todo });
         axios
-            .post("http://localhost:8000/api/todo", data)
+            .post("http://localhost:4000/api/todo", data)
             .then((res) => {
                 setData({ title: "", description: "" });
                 console.log(res.data.message);

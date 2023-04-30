@@ -6,9 +6,8 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route exact path="/" component={ShowTodoList} />
-
-        <Route path="/create-todo" component={CreateTodo} />
+        <Route exact path="/" element={<ShowTodoList />} />
+        <Route path="/create-todo" element={<CreateTodo />} />
       </Routes>
     </div>
   );

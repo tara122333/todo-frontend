@@ -6,10 +6,15 @@ import axios from 'axios';
 export function ShowTodoList() {
     const [todo, setTodo] = useState();
     const BASE_URL = "https://todobackend-hcad.onrender.com";
+    const [spiner, setSpiner] = useState(true);
     useEffect(() => {
         const fun = async () => {
             const response = await axios.get(`${BASE_URL}/api/todo`);
-            setTodo(response.data.todo);
+            if(response.status === 200){
+
+                setTodo(response.data.todo);
+                setSpiner(false);
+            }
         };
         fun();
     });
@@ -28,28 +33,45 @@ export function ShowTodoList() {
                         <span className="font-semibold text-lg">Add</span>
                     </div>
                 </nav>
-                <div className="w-full flex justify-center items-center">
-                    <div className="w-full px-4">
-                        <h1 className="py-5 font-bold text-orange-500 text-2xl text-center">TODO</h1>
-                        <ul className="w-full flex flex-col gap-1 justify-center items-center">
-                            {
-                                todo ? (
-                                    <>
-                                        {todo.map((data) => (
-                                            <TodoCard {...data} />
-                                        ))}
-                                    </>
-                                ) : (
-                                    <>
-                                        <div>
-                                            <h1 className="text-xl font-bold">Add New Work </h1>
-                                        </div>
-                                    </>
-                                )
-                            }
-                        </ul>
-                    </div>
-                </div>
+                
+                {
+                    spiner ? (
+                        <>
+                            <div className="w-full h-full flex justify-center items-center py-20">
+                                <div className="h-20 w-20 rounded-full px-2 bg-black flex justify-center items-center">
+                                    <div className="lds-hourglass text-black"></div>
+                                </div>
+                            </div>
+                        </>
+                    ) : ( 
+                        <>
+
+                            <div className="w-full flex justify-center items-center">
+                                <div className="w-full px-4">
+                                    <h1 className="py-5 font-bold text-orange-500 text-2xl text-center">TODO</h1>
+                                    <ul className="w-full flex flex-col gap-1 justify-center items-center">
+                                        {
+                                            todo ? (
+                                                <>
+                                                    {todo.map((data) => (
+                                                        <TodoCard {...data} />
+                                                    ))}
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <div>
+                                                        <h1 className="text-xl font-bold">Add New Work </h1>
+                                                    </div>
+                                                </>
+                                            )
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </>
+                    )
+                }
+                
             </div>
         </>
     );

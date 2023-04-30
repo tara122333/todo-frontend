@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import UpdateTodoList from './UpdateTodoList';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+
 
 function TodoCard(props) {
+    const [spiner, setSpiner] = useState(false);
+
     const DeleteTodo = async (id) => {
+        setSpiner(true);
         const BASE_URL = "https://todobackend-hcad.onrender.com";
         const response = await axios.delete(`${BASE_URL}/api/todo/${id}`);
         if (response.status === 200) {
@@ -13,6 +19,7 @@ function TodoCard(props) {
         else {
             toast.error("Quiz Not Delete");
         }
+        setSpiner(false);
     }
 
     const [openUpdateTodo, setOpenUpdateTodo] = useState(false);
@@ -32,7 +39,24 @@ function TodoCard(props) {
 
                     <div className="flex gap-2 md:gap-4 lg:gap-6 md:justify-center md:items-center">
                         <button onClick={() => UpdateTodo(props._id)} className="bg-green-500 px-4 rounded-md text-white font-semibold hover:bg-green-700 md:h-8">Edit</button>
-                        <button onClick={() => DeleteTodo(props._id)} className="bg-red-500 px-4 md:px-6 lg:px-8 rounded-md text-white font-semibold hover:bg-red-700 md:h-8">Delete</button>
+                        <button onClick={() => DeleteTodo(props._id)} className="bg-red-500 px-4 md:px-6 lg:px-8 rounded-md text-white font-semibold hover:bg-red-700 md:h-8">
+
+
+
+                            {
+                                spiner ? (
+                                    <>
+                                        <Box  sx={{ display: 'flex', width:'24px', height:'28px' }} className="justify-center items-center">
+                                            <CircularProgress />
+                                        </Box>
+                                    </>
+                                ) : (
+                                    <>
+                                        Delete
+                                    </>
+                                )
+                            }
+                        </button>
                     </div>
                 </div>
             </li>

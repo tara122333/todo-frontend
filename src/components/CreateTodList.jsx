@@ -2,12 +2,15 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
-
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 
 export default function CreateTodoList({ isOpen, setIsOpen }) {
     const BASE_URL = "https://todobackend-hcad.onrender.com";
     const [data, setData] = useState({ title: "", description: "" });
+    const [spiner, setSpiner] = useState(false);
+
 
     function handleChange(e) {
         setData((data) => ({ ...data, [e.target.name]: e.target.value }));
@@ -18,6 +21,7 @@ export default function CreateTodoList({ isOpen, setIsOpen }) {
     }
 
     const handleSubmit = async (e) => {
+        setSpiner(true);
         e.preventDefault();
 
         const todo = {
@@ -43,7 +47,9 @@ export default function CreateTodoList({ isOpen, setIsOpen }) {
                 toast.error("Todo List Not added");
                 console.log(response.message);
             }
+
         }
+        setSpiner(false);
 
     }
 
@@ -106,7 +112,20 @@ export default function CreateTodoList({ isOpen, setIsOpen }) {
                                             </div>
                                             <div className='py-2'>
                                                 <button onClick={handleSubmit} className="px-4 md:px-6 lg:px-8 bg-green-500 hover:bg-green-700 py-1 lg:py-2 rounded-lg text-white ">
-                                                    Create Todo
+
+                                                    {
+                                                        spiner ? (
+                                                            <>
+                                                                <Box sx={{ display: 'flex'}}>
+                                                                    <CircularProgress />
+                                                                </Box>
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                Create
+                                                            </>
+                                                        )
+                                                    }
                                                 </button>
                                             </div>
                                         </form>

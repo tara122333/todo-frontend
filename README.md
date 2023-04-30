@@ -1,12 +1,9 @@
 # Getting Started with Create React App
 
+# How to run project
 
-## Available Scripts
-
-## How to run project
-
-# Step 1
+## Step 1
 npm i
 
-# Step 2
+## Step 2
 npm start

@@ -4,13 +4,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import UpdateTodoList from './UpdateTodoList';
 
 function TodoCard(props) {
-    const DeleteTodo = async(id) =>{
+    const DeleteTodo = async (id) => {
         const BASE_URL = "http://localhost:4000";
         const response = await axios.delete(`${BASE_URL}/api/todo/${id}`);
-        if(response.status === 200){
+        if (response.status === 200) {
             toast.success("Todo Delete success");
         }
-        else{
+        else {
             toast.error("Quiz Not Delete");
         }
     }
@@ -21,7 +21,7 @@ function TodoCard(props) {
     return (
         <>
 
-            <ToastContainer/>
+            <ToastContainer />
             <UpdateTodoList isOpen={openUpdateTodo} setIsOpen={setOpenUpdateTodo} _id={props._id} />
             <li key={props._id} className="w-full md:w-3/4">
                 <div className="flex hover:bg-purple-100 border-2 w-full md:w-full lg:w-full rounded-lg px-4 py-3 md:py-1 flex-col md:flex-row md:justify-between">
@@ -31,8 +31,8 @@ function TodoCard(props) {
                     </div>
 
                     <div className="flex gap-2 md:gap-4 lg:gap-6 md:justify-center md:items-center">
-                        <button onClick={()=>UpdateTodo(props._id)} className="bg-green-500 px-4 rounded-md text-white font-semibold hover:bg-green-700 md:h-8">Edit</button>
-                        <button onClick={()=>DeleteTodo(props._id)} className="bg-red-500 px-4 md:px-6 lg:px-8 rounded-md text-white font-semibold hover:bg-red-700 md:h-8">Delete</button>
+                        <button onClick={() => UpdateTodo(props._id)} className="bg-green-500 px-4 rounded-md text-white font-semibold hover:bg-green-700 md:h-8">Edit</button>
+                        <button onClick={() => DeleteTodo(props._id)} className="bg-red-500 px-4 md:px-6 lg:px-8 rounded-md text-white font-semibold hover:bg-red-700 md:h-8">Delete</button>
                     </div>
                 </div>
             </li>

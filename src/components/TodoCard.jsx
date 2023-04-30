@@ -5,7 +5,7 @@ import UpdateTodoList from './UpdateTodoList';
 
 function TodoCard(props) {
     const DeleteTodo = async (id) => {
-        const BASE_URL = "http://localhost:4000";
+        const BASE_URL = "https://todobackend-hcad.onrender.com/";
         const response = await axios.delete(`${BASE_URL}/api/todo/${id}`);
         if (response.status === 200) {
             toast.success("Todo Delete success");

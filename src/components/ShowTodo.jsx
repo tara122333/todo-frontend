@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export function ShowTodoList() {
     const [todo, setTodo] = useState();
-    const BASE_URL = "http://localhost:4000";
+    const BASE_URL = "https://todobackend-hcad.onrender.com/";
     useEffect(() => {
         const fun = async () => {
             const response = await axios.get(`${BASE_URL}/api/todo`);

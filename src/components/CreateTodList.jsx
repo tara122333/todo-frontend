@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 export default function CreateTodoList({ isOpen, setIsOpen }) {
-    const BASE_URL = "https://todobackend-hcad.onrender.com/";
+    const BASE_URL = "https://todobackend-hcad.onrender.com";
     const [data, setData] = useState({ title: "", description: "" });
 
     function handleChange(e) {

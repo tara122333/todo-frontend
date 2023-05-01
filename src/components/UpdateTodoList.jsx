@@ -102,7 +102,7 @@ export default function UpdateTodoList({ isOpen, setIsOpen, _id }) {
                                                     name="description"
                                                     value={data.description}
                                                     onChange={handleChange}
-                                                    placeholder='Enter Title'
+                                                    placeholder='Enter Description'
                                                     className='px-4 py-2 outline-none border-2 border-blue-500 rounded-md w-full'
                                                 />
                                             </div>
